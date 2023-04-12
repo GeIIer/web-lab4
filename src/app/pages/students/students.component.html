@@ -1,0 +1,19 @@
+<div class="container">
+  <header class="profile-name">
+    <h2>Студент</h2>
+    <h3>
+      <strong>{{ student.id }} {{ student.name }}</strong>
+    </h3>
+  </header>
+  <div class="email">
+    <span class="gray"> Группа: </span>
+    <span class="nowrap">{{ student.group }}</span>
+  </div>
+  <div class="info-container">
+    <span class="gray"> Дата рождения: </span>
+    <span class="nowrap">{{ student.birthdate }}</span>
+    <span class="gray"> Номер: </span>
+    <span class="nowrap">{{ student.number }}</span>
+  </div>
+  <button (click)="goBack()">Назад</button>
+</div>

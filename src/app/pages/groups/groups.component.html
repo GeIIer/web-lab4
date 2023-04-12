@@ -1,0 +1,26 @@
+<table class="container">
+  <thead>
+  <tr>
+    <th class="table-head" *ngFor="let column of columns">
+      <h1>{{ column }}</h1>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let group of groups">
+    <td>
+      <h3>
+        {{group.id}}
+      </h3>
+    </td>
+    <td>
+      <h3>
+        {{group.name}}
+      </h3>
+    </td>
+    <div class="btn-container">
+      <a routerLink="/groups/{{ group.id }}" class="button">Подробнее</a>
+    </div>
+  </tr>
+  </tbody>
+</table>

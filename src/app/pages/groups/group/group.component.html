@@ -1,0 +1,10 @@
+<h2>Группа {{ group.id }}: {{ group.name }}</h2>
+<h3>Список студентов:</h3>
+<ul>
+  <li *ngFor="let student of group.students">
+    <a routerLink="/students/{{ student.id }}">
+      {{ student.name }}
+    </a>
+  </li>
+</ul>
+<button (click)="goBack()">Назад</button>
