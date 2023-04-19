@@ -9,17 +9,26 @@ import {StudentsService} from "../../services/students.service";
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent implements OnInit{
-  student: Student;
-  id: number;
+  student!: Student;
+  errors = false;
   constructor(private router: Router, private studentService: StudentsService, private route: ActivatedRoute){
 
   }
   ngOnInit(): void {
-    this.route.params.subscribe(params=>this.id=params['id']);
-    this.studentService.getStudentById(this.id).subscribe(data => {
-      this.student = data;
-    })
+    let id = Number(this.route.snapshot.paramMap.get("id"))
+    this.studentService.getStudentById(id).subscribe(
+      result => {
+        this.student = result;
+      },
+      error => {
+        this.errors = true;
+      },
+      () => {
+
+      }
+    );
   }
+
   goBack(): void {
     this.router.navigate(["/groups"]).then()
   }

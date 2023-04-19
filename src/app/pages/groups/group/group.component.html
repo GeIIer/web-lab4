@@ -1,10 +1,17 @@
-<h2>Группа {{ group.id }}: {{ group.name }}</h2>
-<h3>Список студентов:</h3>
-<ul>
-  <li *ngFor="let student of group.students">
-    <a routerLink="/students/{{ student.id }}">
-      {{ student.name }}
-    </a>
-  </li>
-</ul>
-<button (click)="goBack()">Назад</button>
+<div *ngIf="!group; else elseBlock">Я загрузка</div>
+<div *ngIf="errors;">Я сломался</div>
+<ng-template #elseBlock>
+  <h2>Группа: {{ group.name }}</h2>
+  <h3>Список студентов:</h3>
+  <div *ngIf="studentEmpty(); else printBlock">Студентов не завезли</div>
+  <ng-template #printBlock>
+    <ul>
+      <li *ngFor="let student of group.students">
+        <a routerLink="/students/{{ student.id }}">
+          {{ student.name }}
+        </a>
+      </li>
+    </ul>
+  </ng-template>
+  <button (click)="goBack()">Назад</button>
+</ng-template>

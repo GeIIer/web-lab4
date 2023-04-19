@@ -1,6 +1,6 @@
 import {Student} from "./student";
 
-export class Group {
+export interface Group {
   id: number;
   name: string;
   students: Student[];

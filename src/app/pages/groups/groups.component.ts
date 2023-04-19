@@ -10,19 +10,28 @@ import {Group} from "../../core/models/group";
 })
 export class GroupsComponent implements OnInit{
   columns: string[] = [
-    "Id", "Название",
+    "Название",
   ]
 
-  groups: Group[];
+  groups!: Group[];
+  errors = false;
 
   constructor(private router: Router, private groupsService: GroupsService){
 
   }
 
   ngOnInit(): void {
-    this.groupsService.getGroups().subscribe(data => {
-      this.groups = data;
-    })
+    this.groupsService.getGroups().subscribe(
+      result => {
+        this.groups = result;
+      },
+      error => {
+        this.errors = true;
+      },
+      () => {
+
+      }
+    );
   }
 
 }
