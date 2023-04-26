@@ -12,7 +12,7 @@ export class ModalStudentComponent {
   title!: string;
   firstname!: string;
   lastname!: string;
-  birthdate!: Date;
+  birthdate!: string;
   number!: number;
 
   selectedGroup!: Group;
@@ -27,6 +27,7 @@ export class ModalStudentComponent {
       firstname: new FormControl('', [Validators.required,]),
       lastname: new FormControl('', [Validators.required],),
       number: new FormControl(NaN),
+      group: new FormControl(),
       date: new FormControl('', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/),]
       )
     });
