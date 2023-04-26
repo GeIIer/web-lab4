@@ -1,26 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentsComponent } from './students.component';
+import {GroupDetailsComponent} from "./group-details.component";
 import {RouterModule} from "@angular/router";
+import { ModalStudentComponent } from './modal-student/modal-student.component';
+import {FormsModule} from "@angular/forms";
+import {GroupService} from "../../../services/groups.service";
+import {StudentService} from "../../../services/students.service";
 import {MdbModalModule} from "mdb-angular-ui-kit/modal";
 import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
 import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
-import {FormsModule} from "@angular/forms";
-import {StudentService} from "../../services/students.service";
-import {GroupService} from "../../services/groups.service";
-
 
 
 @NgModule({
   declarations: [
-    StudentsComponent
+    GroupDetailsComponent,
+    ModalStudentComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: StudentsComponent,
+        component: GroupDetailsComponent,
       },
     ]),
     FormsModule,
@@ -29,8 +30,8 @@ import {GroupService} from "../../services/groups.service";
     MdbRippleModule
   ],
   providers: [
-    StudentService,
     GroupService,
+    StudentService,
   ]
 })
-export class StudentsModule { }
+export class GroupDetailsModule { }

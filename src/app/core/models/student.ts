@@ -1,7 +1,8 @@
 export class Student {
   id: number;
-  name: string;
+  firstname: string;
+  lastname: string;
   birthdate: Date;
   number: number;
-  group: number | string;
+  groupId: number;
 }

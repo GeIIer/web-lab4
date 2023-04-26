@@ -1,26 +1,21 @@
-<table class="container">
-  <thead>
-  <tr>
-    <th class="table-head" *ngFor="let column of columns">
-      <h1>{{ column }}</h1>
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let group of groups">
-    <td>
-      <h3>
-        {{group.id}}
-      </h3>
-    </td>
-    <td>
-      <h3>
-        {{group.name}}
-      </h3>
-    </td>
-    <div class="btn-container">
-      <a routerLink="/groups/{{ group.id }}" class="button">Подробнее</a>
+<div class="container">
+  <div *ngIf="!groups; else elseBlock">Я загрузка</div>
+  <div *ngIf="err">Я сломался</div>
+  <ng-template #elseBlock>
+    <h3>Группы</h3>
+    <div *ngIf="groupsEmpty()">Группы отсутствуют</div>
+    <div class="list-group list-group-light">
+      <div *ngFor="let group of groups"
+           class="list-group-item list-group-item-action px-3 border-0"
+           aria-current="true"
+      >
+        <h5 routerLink="/groups/{{ group.id }}">
+          {{group.name}}
+        </h5>
+        <input type="button" value="Удалить" (click)="deleteGroup(group.id)" class="btn btn-outline-danger btn-large"
+               mdbRipple rippleColor="dark"/>
+      </div>
     </div>
-  </tr>
-  </tbody>
-</table>
+    <input type="button" value="Добавить" class="btn btn-add" (click)="openModalAddNew()"/>
+  </ng-template>
+</div>

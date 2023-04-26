@@ -6,6 +6,7 @@ import {MenuModule} from "./shared/menu/menu.module";
 import {BodyModule} from "./shared/body/body.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {RouterModule} from "@angular/router";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {RouterModule} from "@angular/router";
     RouterModule,
     HttpClientModule,
     BodyModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

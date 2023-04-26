@@ -1,19 +1,31 @@
 <div class="container">
-  <header class="profile-name">
-    <h2>Студент</h2>
-    <h3>
-      <strong>{{ student.id }} {{ student.name }}</strong>
-    </h3>
-  </header>
-  <div class="email">
-    <span class="gray"> Группа: </span>
-    <span class="nowrap">{{ student.group }}</span>
-  </div>
-  <div class="info-container">
-    <span class="gray"> Дата рождения: </span>
-    <span class="nowrap">{{ student.birthdate }}</span>
-    <span class="gray"> Номер: </span>
-    <span class="nowrap">{{ student.number }}</span>
-  </div>
-  <button (click)="goBack()">Назад</button>
+  <div *ngIf="!group; else elseBlock">Я загрузка</div>
+  <div *ngIf="errors;">Я сломался</div>
+  <ng-template #elseBlock>
+    <div class="container-profile-name">
+      <header class="profile-name">
+        <div class="profile-name-card">
+          <h3>
+            <strong>{{ student.lastname }} {{ student.firstname }}</strong>
+          </h3>
+          <div class="button-card">
+            <button type="button" class="btn btn-secondary" (click)="openModalChange(student)">Редактировать </button>
+          </div>
+        </div>
+      </header>
+      <div class="email">
+        <span class="gray"> Группа: </span>
+        <span class="nowrap">{{ group.name }}</span>
+      </div>
+      <div class="info-container">
+        <span class="gray"> Дата рождения: </span>
+        <span class="nowrap">{{ student.birthdate }}</span> <br>
+        <span class="gray"> Номер: </span>
+        <span class="nowrap">{{ student.number }}</span> <br>
+      </div>
+      <div class="container-button">
+        <input type="button" value="Назать" class="btn btn-add" (click)="goBack()"/>
+      </div>
+    </div>
+  </ng-template>
 </div>
