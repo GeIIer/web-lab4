@@ -8,53 +8,60 @@
   ></button>
 </div>
 <div class="modal-body">
-  <div class="input-group mb-3">
-    <input
-      type="text" class="form-control" placeholder="Имя" aria-label="studyHours"
-      aria-describedby="basic-addon1"
-      [(ngModel)]="firstname"
-    />
-  </div>
-  <div class="input-group mb-3">
-    <input
-      type="text" class="form-control" placeholder="Фамилия" aria-label="subjectName"
-      aria-describedby="basic-addon1"
-      [(ngModel)]="lastname"
-    />
-  </div>
-  <div class="input-group mb-3">
-    <input
-      type="date" class="form-control" placeholder="Дата рождения" aria-label="subjectName"
-      aria-describedby="basic-addon1"
-      [(ngModel)]="birthdate"
-    />
-  </div>
-  <div class="input-group mb-3">
-    <input
-      type="number" class="form-control" placeholder="Номер" aria-label="checkpoints"
-      aria-describedby="basic-addon1"
-      [(ngModel)]="number"
-    />
-  </div>
-  <div *ngIf="change" class="input-group mb-3">
-    <div class="">
-      <label>Группа</label>
-      <select
-        class="form-select"
-        aria-label="Default select example"
-        [(ngModel)]="selectedGroup"
-      >
-        <option *ngFor="let group of groups"
-                [ngValue]="group">{{group.name}}</option>
-      </select>
+  <form [formGroup]="myForm">
+    <div class="input-group mb-3">
+      <input
+        type="text" class="form-control" formControlName="firstname" placeholder="Имя" aria-label="studyHours"
+        aria-describedby="basic-addon1"
+        [(ngModel)]="firstname"
+      />
     </div>
-  </div>
+    <div class="input-group mb-3">
+      <input
+        type="text" class="form-control" formControlName="lastname" placeholder="Фамилия" aria-label="subjectName"
+        aria-describedby="basic-addon1"
+        [(ngModel)]="lastname"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        type="date" class="form-control" formControlName="date" placeholder="Дата рождения" aria-label="subjectName"
+        aria-describedby="basic-addon1"
+        [(ngModel)]="birthdate"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        type="number" class="form-control" formControlName="number" placeholder="Номер" aria-label="checkpoints"
+        aria-describedby="basic-addon1"
+        [(ngModel)]="number"
+      />
+    </div>
+    <div *ngIf="change" class="input-group mb-3">
+      <div class="">
+        <label>Группа</label>
+        <select
+          class="form-select"
+          formControlName="group"
+          aria-label="Default select example"
+          [(ngModel)]="selectedGroup"
+        >
+          <option *ngFor="let group of groups"
+                  [ngValue]="group">{{group.name}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="close()">
     Закрыть
   </button>
-  <button type="button" class="btn btn-primary" [disabled]="!checkNull()" (click)="save()">
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="!checkNull() || myForm.invalid"
+    (click)="save()">
     Сохранить
   </button>
 </div>

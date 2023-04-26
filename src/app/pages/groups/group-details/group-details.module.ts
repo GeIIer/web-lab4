@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {GroupDetailsComponent} from "./group-details.component";
 import {RouterModule} from "@angular/router";
 import { ModalStudentComponent } from './modal-student/modal-student.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {GroupService} from "../../../services/groups.service";
 import {StudentService} from "../../../services/students.service";
 import {MdbModalModule} from "mdb-angular-ui-kit/modal";
@@ -16,19 +16,20 @@ import {MdbRippleModule} from "mdb-angular-ui-kit/ripple";
     GroupDetailsComponent,
     ModalStudentComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: GroupDetailsComponent,
-      },
-    ]),
-    FormsModule,
-    MdbModalModule,
-    MdbFormsModule,
-    MdbRippleModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: GroupDetailsComponent,
+            },
+        ]),
+        FormsModule,
+        MdbModalModule,
+        MdbFormsModule,
+        MdbRippleModule,
+        ReactiveFormsModule
+    ],
   providers: [
     GroupService,
     StudentService,

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MdbModalRef} from "mdb-angular-ui-kit/modal";
 import {Group} from "../../../../core/models/group";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-modal-student',
@@ -18,7 +19,17 @@ export class ModalStudentComponent {
   change: boolean = false;
   groups!: Group[];
 
-  constructor(public modalRef: MdbModalRef<ModalStudentComponent>) {
+  myForm: FormGroup;
+
+  constructor(public modalRef: MdbModalRef<ModalStudentComponent>,
+              private formBuilder: FormBuilder) {
+    this.myForm = new FormGroup({
+      firstname: new FormControl('', [Validators.required,]),
+      lastname: new FormControl('', [Validators.required],),
+      number: new FormControl(NaN),
+      date: new FormControl('', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/),]
+      )
+    });
   }
 
   close() {
@@ -35,8 +46,7 @@ export class ModalStudentComponent {
         groupId: this.selectedGroup.id
       }
       this.modalRef.close(newStudent);
-    }
-    else {
+    } else {
       let newStudent = {
         firstname: this.firstname,
         lastname: this.lastname,
@@ -48,8 +58,8 @@ export class ModalStudentComponent {
   }
 
   checkNull() {
-    return this.firstname != null
-      && this.lastname != null
+    return this.firstname != ""
+      && this.lastname != ""
       && this.birthdate != null
       && this.number != null;
   }
